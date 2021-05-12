@@ -282,12 +282,16 @@ jobs:
           path: /home/runner/work/owasp-masvs/owasp-masvs/
       - name: List EN
         run: ls -l OWASP_MASVS-*-en
-      - name: Move all OWASP files
+      - name: Move all OWASP MASVS document files
         run: mv OWASP_MASVS-*-*/* .
+      - name: Move all OWASP MASVS machine readable files
+        run: mv OWASP_MASVS-*.*/* .
       - name: List
         run: ls -l
       - name: Cleanup 
         run: rm -rf OWASP_MASVS-*/
+      - name: List after cleanup
+        run: ls -l
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
