@@ -295,7 +295,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          body_path: RECENT_CHANGES.md
+          body_path: RECENT_CHANGES.md/RECENT_CHANGES.md
           files: |
             OWASP_MASVS-*.pdf
             OWASP_MASVS-*.csv/OWASP_MASVS-*.csv
