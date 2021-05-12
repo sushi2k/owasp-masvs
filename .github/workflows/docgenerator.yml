@@ -247,6 +247,22 @@ jobs:
       run: docker run -v ${PWD}:/documents owasp/masvs-docgenerator:0.2 'cd /documents/tools && python3 export.py --format json --lang en > OWASP_MASVS-${{env.VERSION}}.json'
     - name: Generate python scripts (xml)
       run: docker run -v ${PWD}:/documents owasp/masvs-docgenerator:0.2 'cd /documents/tools && python3 export.py --format xml --lang en > OWASP_MASVS-${{env.VERSION}}.xml'
+
+    - name: Generate English version of MASVS
+      steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Generate English PDF
+        run: ./tools/docker/pandoc_makedocs.sh Document ${{env.VERSION}}
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: OWASP_MASVS-${{env.VERSION}}-en
+          path: OWASP_MASVS-${{env.VERSION}}-en*
+
     - name: Upload CSV export
       uses: actions/upload-artifact@v1
       with:
