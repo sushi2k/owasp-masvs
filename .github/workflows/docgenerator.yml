@@ -278,29 +278,29 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/') && (github.actor == 'cpholguera' || github.actor == 'sushi2k')
     steps:
       - uses: actions/download-artifact@v2
-        with: 
-          path: /home/runner/work/owasp-masvs/owasp-masvs/
+        # with: 
+        #   path: /home/runner/work/owasp-masvs/owasp-masvs/
       - name: List EN
         run: ls -l OWASP_MASVS-*-en
       - name: Move all OWASP MASVS document files
         run: mv OWASP_MASVS-*-*/* .
-      - name: Move all OWASP MASVS machine readable files
-        run: mv OWASP_MASVS-*.*/* .
+      # - name: Move all OWASP MASVS machine readable files
+      #   run: mv OWASP_MASVS-*.*/* .
       - name: List
         run: ls -l
-      - name: Cleanup 
-        run: rm -rf OWASP_MASVS-*/
-      - name: List after cleanup
-        run: ls -l
+      # - name: Cleanup 
+      #   run: rm -rf OWASP_MASVS-*/
+      # - name: List after cleanup
+      #   run: ls -l
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           body_path: RECENT_CHANGES.md
           files: |
             OWASP_MASVS-*.pdf
-            OWASP_MASVS-*.csv
-            OWASP_MASVS-*.json
-            OWASP_MASVS-*.xml
+            OWASP_MASVS-*.csv/OWASP_MASVS-*.csv
+            OWASP_MASVS-*.json/OWASP_MASVS-*.json
+            OWASP_MASVS-*.xml/OWASP_MASVS-*.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
